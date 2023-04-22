@@ -1,4 +1,5 @@
 import NewFormTodo from "./NewFormTodo";
+import TodoList from "./TodoList";
 import "./styles.css"
 import { useState } from 'react';
 
@@ -35,19 +36,7 @@ return (
   <>
   <NewFormTodo onSubmit={addTodo} /* props object is sent to the newformtodo.jsx */ /> 
   <h1 className="header">Todo List</h1>
-  <ul className="list"> 
-    {/* //short circuit */}
-    {todos.length === 0 && "No Todos" } 
-    {todos.map(todo => { //key is used as an identifier
-    return <li key={todo.id}>  
-      <label>
-        <input type="checkbox" checked={todo.completed} onChange={e=> toggleTodo(todo.id, e.target.checked)}/>
-        {todo.title}
-      </label>
-        <button onClick={()=>deleteTodo(todo.id)} className="btn btn-danger">Delete</button> 
-     </li> //()=> passing a function | deleteTodo(todo.id) is passing the result
-    })}
-  </ul>
+  <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo}/>
   </>
   )
 }

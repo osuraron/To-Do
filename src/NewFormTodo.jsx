@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 
-export default function NewFormTodo(onSubmit) {
+export default function NewFormTodo(onSubmit) { // match the prop (onsubmit with the prop at app.jsx (destructuring)
   const [newItem, setNewItem] = useState("") //useState 
 
     function handleSubmit(e) { //add function
