@@ -1,10 +1,20 @@
 import NewFormTodo from "./NewFormTodo";
 import TodoList from "./TodoList";
 import "./styles.css"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function App(){
-  const [todos, setTodos] = useState([])
+  const [todos, setTodos] = useState(() => {
+    const localValue = localStorage.getItem("ITEMS")
+    if(localValue === null) return []
+    return JSON.parse(localValue)
+  })
+  //get from localstorage
+
+
+  useEffect(() => {
+    localStorage.setItem("ITEMS", JSON.stringify(todos))  
+  }, [todos]) //everytime the todos change, the localstorage is updated 
    
 function addTodo(title){
   setTodos(currentTodos => { //setting the id of each item
